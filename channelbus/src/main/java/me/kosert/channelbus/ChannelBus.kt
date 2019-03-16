@@ -25,7 +25,7 @@ open class ChannelBus {
 
     /**
      * Posts new event to channel of the [event] type.
-     * @param retain If the [event] should remain in the channel for future subscribers. This is true by default.
+     * @param retain If the [event] should be retained in the channel for future subscribers. This is true by default.
      */
     @JvmOverloads
     fun <T : Any> post(event: T, retain: Boolean = true) {
@@ -34,7 +34,8 @@ open class ChannelBus {
             if (!it)
                 throw IllegalStateException("ConflatedChannel cannot take element, this should never happen")
         }
-        if (!retain) clear(event.javaClass)
+        if (!retain)
+            dropEvent(event.javaClass)
     }
 
     /**
@@ -50,7 +51,7 @@ open class ChannelBus {
     /**
      *  Removes retained event of type [clazz]
      */
-    fun clear(clazz: Class<*>) {
+    fun dropEvent(clazz: Class<*>) {
         if (!channels.contains(clazz)) return
         val channel = channels[clazz] as BroadcastChannel<Any>
         channel.offer(DummyEvent())

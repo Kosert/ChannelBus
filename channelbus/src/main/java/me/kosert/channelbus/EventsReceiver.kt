@@ -23,7 +23,7 @@ open class EventsReceiver @JvmOverloads constructor(
             Dispatchers.Default
 
     /**
-     * Set the `Dispatcher` which will be used to launch your callbacks.
+     * Set the `CoroutineDispatcher` which will be used to launch your callbacks.
      *
      * If this [EventsReceiver] was created on the main thread the default dispatcher will be [Dispatchers.Main].
      * In any other case [Dispatchers.Default] will be used.
