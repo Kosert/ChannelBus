@@ -41,11 +41,30 @@ open class ChannelBus {
     /**
      * Returns last posted event that was instance of [clazz] or `null` if no event of the given type is retained.
      * @return Retained event that is instance of [clazz]
+     * @see awaitEvent
      */
     fun <T : Any> getLastEvent(clazz: Class<T>): T? {
         val channel = channels.getOrElse(clazz) { null }
         val value = (channel as? ConflatedBroadcastChannel<Any>)?.valueOrNull
         return value as? T
+    }
+
+    /**
+     * Returns last posted event that was instance of [clazz] or awaits for it if one is not retained.
+     * @param skipRetained Skips event retained in the channel. This is `false` by default
+     * @return New or retained event that is instance of [clazz]
+     * @see getLastEvent
+     */
+    suspend fun <T : Any> awaitEvent(clazz: Class<T>, skipRetained: Boolean = false): T {
+        val receiveChannel = forEvent(clazz).openSubscription()
+
+        if (skipRetained)
+            receiveChannel.poll()
+
+        while (true) {
+            val received = receiveChannel.receive().takeUnless { it is DummyEvent }
+            return received ?: continue
+        }
     }
 
     /**
