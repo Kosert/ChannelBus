@@ -34,7 +34,25 @@ For detailed documentation, [check the wiki](https://github.com/Kosert/ChannelBu
 
 
 ## Include in your project
-//TODO
+
+In your project root `build.gradle`:
+```gradle
+allprojects {
+    repositories {
+        ...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+
+In your module's `build.gradle`:
+```gradle
+dependencies {
+    ...
+	implementation 'com.github.kosert:channelbus:0.1'
+}
+```
+
 
 ## License
 Apache 2.0
