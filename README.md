@@ -39,7 +39,6 @@ In your project root `build.gradle`:
 ```gradle
 allprojects {
     repositories {
-        ...
 		maven { url 'https://jitpack.io' }
 	}
 }
@@ -48,7 +47,6 @@ allprojects {
 In your module's `build.gradle`:
 ```gradle
 dependencies {
-    ...
 	implementation 'com.github.kosert:channelbus:0.1'
 }
 ```
