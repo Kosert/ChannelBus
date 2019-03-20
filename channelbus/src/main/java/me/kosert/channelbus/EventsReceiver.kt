@@ -2,6 +2,7 @@ package me.kosert.channelbus
 
 import android.os.Looper
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.channels.ReceiveChannel
 
 /**
@@ -54,8 +55,14 @@ open class EventsReceiver @JvmOverloads constructor(
             if (skipRetained)
                 channel.poll()
 
-            while (true) {
-                val received = channel.receive()
+            while (isActive) {
+                val received = try {
+                    channel.receive()
+                } catch (ex: ClosedReceiveChannelException) {
+                    // this job should have been terminated before the channel was closed
+                    // but for some reason it is not...
+                    return@launch
+                }
                 if (received is DummyEvent) continue
 
                 withContext(returnDispatcher) { callback(received) }
@@ -119,7 +126,8 @@ open class EventsReceiver @JvmOverloads constructor(
 
         fun unsubscribe() {
             job.cancel()
-            channel.cancel()
+            if (!channel.isClosedForReceive)
+                channel.cancel()
         }
     }
 }
