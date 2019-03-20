@@ -6,6 +6,11 @@ import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.channels.ReceiveChannel
 
 /**
+ * Because typos
+ */
+typealias EventReceiver = EventsReceiver
+
+/**
  * Class for receiving events posted to [ChannelBus]
  *
  *@param bus [ChannelBus] instance to subscribe to. If not set, [GlobalBus] will be used
