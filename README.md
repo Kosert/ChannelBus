@@ -50,7 +50,7 @@ allprojects {
 In your module's `build.gradle`:
 ```gradle
 dependencies {
-    implementation 'com.github.kosert:channelbus:0.1'
+    implementation 'com.github.Kosert:ChannelBus:0.1'
 }
 ```
 
