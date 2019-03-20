@@ -1,4 +1,5 @@
 # ChannelBus
+[![](https://jitpack.io/v/Kosert/ChannelBus.svg)](https://jitpack.io/#Kosert/ChannelBus)
 
 ChannelBus is an event bus implementation for Android. 
 - **Powered by Kotlin Coroutines and Channels**
@@ -7,7 +8,8 @@ ChannelBus is an event bus implementation for Android.
 
 ## Example
 
-### Subscribe
+### Subscribing
+Most use cases will consist of subscribing in your Activity/Fragment `onStart` method and unsubscribing in `onStop`.
 ```kotlin
 class SomeActivity : AppCompatActivity() {
 
@@ -25,7 +27,8 @@ class SomeActivity : AppCompatActivity() {
         receiver.unsubscribeAll()
     }
 ```
-### Post
+### Posting
+Instance of any class can posted as an event.
 ```kotlin
 GlobalBus.post(MyEvent())
 ```
@@ -39,17 +42,15 @@ In your project root `build.gradle`:
 ```gradle
 allprojects {
     repositories {
-        ...
-		maven { url 'https://jitpack.io' }
-	}
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
 In your module's `build.gradle`:
 ```gradle
 dependencies {
-    ...
-	implementation 'com.github.kosert:channelbus:0.1'
+    implementation 'com.github.Kosert:ChannelBus:0.1'
 }
 ```
 
