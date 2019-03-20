@@ -41,15 +41,15 @@ In your project root `build.gradle`:
 ```gradle
 allprojects {
     repositories {
-		maven { url 'https://jitpack.io' }
-	}
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
 In your module's `build.gradle`:
 ```gradle
 dependencies {
-	implementation 'com.github.kosert:channelbus:0.1'
+    implementation 'com.github.kosert:channelbus:0.1'
 }
 ```
 
