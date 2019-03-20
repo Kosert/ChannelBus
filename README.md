@@ -1,4 +1,5 @@
 # ChannelBus
+[![](https://jitpack.io/v/Kosert/ChannelBus.svg)](https://jitpack.io/#Kosert/ChannelBus)
 
 ChannelBus is an event bus implementation for Android. 
 - **Powered by Kotlin Coroutines and Channels**
