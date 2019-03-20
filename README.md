@@ -7,7 +7,8 @@ ChannelBus is an event bus implementation for Android.
 
 ## Example
 
-### Subscribe
+### Subscribing
+Most use cases will consist of subscribing in your Activity/Fragment `onStart` method and unsubscribing in `onStop`.
 ```kotlin
 class SomeActivity : AppCompatActivity() {
 
@@ -25,7 +26,8 @@ class SomeActivity : AppCompatActivity() {
         receiver.unsubscribeAll()
     }
 ```
-### Post
+### Posting
+Instance of any class can posted as an event.
 ```kotlin
 GlobalBus.post(MyEvent())
 ```
