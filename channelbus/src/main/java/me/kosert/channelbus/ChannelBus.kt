@@ -75,4 +75,13 @@ open class ChannelBus {
         val channel = channels[clazz] as BroadcastChannel<Any>
         channel.offer(DummyEvent())
     }
+
+    /**
+     *  Removes all retained events
+     */
+    fun dropAll() {
+        channels.forEach {
+            it.value.offer(DummyEvent())
+        }
+    }
 }

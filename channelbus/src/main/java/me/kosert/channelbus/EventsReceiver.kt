@@ -60,7 +60,7 @@ open class EventsReceiver @JvmOverloads constructor(
             if (skipRetained)
                 channel.poll()
 
-            while (isActive) {
+            while (isActive && !channel.isClosedForReceive) {
                 val received = try {
                     channel.receive()
                 } catch (ex: ClosedReceiveChannelException) {
@@ -131,8 +131,7 @@ open class EventsReceiver @JvmOverloads constructor(
 
         fun unsubscribe() {
             job.cancel()
-            if (!channel.isClosedForReceive)
-                channel.cancel()
+            channel.cancel()
         }
     }
 }
