@@ -54,6 +54,13 @@ dependencies {
 }
 ```
 
+Optionally (this will prevent Android Studio from highlighting usages because of `ExperimentalCoroutinesApi`):
+```gradle
+android {
+    kotlinOptions.freeCompilerArgs += "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+}
+```
+
 
 ## License
 ```
