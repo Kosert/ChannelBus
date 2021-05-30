@@ -1,3 +1,13 @@
+# Deprecated
+
+> Broadcast Channel API is obsolete since 1.5.0. It will be deprecated with warning in 1.6.0 and with error in 1.7.0. It is replaced with [SharedFlow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-shared-flow/).
+
+Since this library was based on BroadcastChannels, it is also now obsolete. If you are interested I have made a similar library using the new StateFlow API: https://github.com/Kosert/FlowBus  
+
+If you are still using ChannelBus, check out [Migration guide](https://github.com/Kosert/FlowBus/wiki/5.-Migrating-from-ChannelBus)
+
+---
+
 # ChannelBus
 [![](https://jitpack.io/v/Kosert/ChannelBus.svg)](https://jitpack.io/#Kosert/ChannelBus)
 
